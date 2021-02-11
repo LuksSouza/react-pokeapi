@@ -1,11 +1,11 @@
 import React from 'react';
-import classes from './Navbar.module.css';
+import './Navbar.css';
 
 import { NavLink } from 'react-router-dom';
 
 const navbar = (props) => {
     return (
-        <nav className={classes.Navbar}>
+        <nav className="Navbar">
             <ul>
                 {
                     props.itemsList.map(i => (
