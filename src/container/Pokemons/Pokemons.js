@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 
 import Spinner from '../../component/UI/Spinner/Spinner';
+import PokemonCard from '../../component/PokemonCard/PokemonCard';
 
 class Pokemons extends Component {
 
@@ -15,27 +16,31 @@ class Pokemons extends Component {
             this.setState({
                 pokemons: res.data.pokemon_species
             })
-            console.log(this.state.pokemons);
         })
         .catch(error => console.log(error.message));
     }
 
     render() {
-        console.log(this.state.pokemons);
-
         let allPokemons = <Spinner />;
         if (this.state.pokemons.length > 0) {
             allPokemons = (
                 this.state.pokemons.map(p => {
-                    return <p style={{ margin: '5px' }} key={p.name}>{p.name}</p>;
+                    return <PokemonCard key={p.name} path={this.props.location.pathname} name={p.name} />
                 })
             );
         }
 
+        const divStyle = {
+            margin: '25px 100px 0px 100px',
+            height: '530px',
+            overflow: 'auto'
+        };
+
         return (
             <Fragment>
-                <p style={{textAlign: 'center'}}>Here will be showed all the original pokemons</p>
-                {allPokemons}
+                <div style={divStyle}>
+                    {allPokemons}
+                </div>
             </Fragment>
         );
     }
