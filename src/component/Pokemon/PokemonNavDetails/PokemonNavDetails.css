@@ -1,0 +1,25 @@
+.PokemonNavDetails ul {
+  list-style: none;
+  margin-left: 33%;
+  padding: 0;
+  width: 35%;
+  text-align: center;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.PokemonNavDetails li {
+  display: inline-block;
+  margin: 15px;
+}
+
+.PokemonNavDetails li a {
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.PokemonNavDetails li a:hover {
+  background-color: #111;
+}

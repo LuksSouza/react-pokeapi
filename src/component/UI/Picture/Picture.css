@@ -1,0 +1,14 @@
+.Picture {
+    width: 50%;
+    float: left;
+    padding: 20px;
+}
+
+.Picture img {
+    border-color: #940000;
+    border-style: outset;
+}
+
+.Picture p {
+    text-transform: capitalize;
+}

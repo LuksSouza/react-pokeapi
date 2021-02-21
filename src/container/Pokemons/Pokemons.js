@@ -1,20 +1,20 @@
 import React, { Component, Fragment } from 'react';
-import axios from 'axios';
+import axios from '../../axios';
 
 import Spinner from '../../component/UI/Spinner/Spinner';
-import PokemonCard from '../../component/PokemonCard/PokemonCard';
+import PokemonCard from '../../component/Pokemon/PokemonCard/PokemonCard';
 
 class Pokemons extends Component {
 
     state = {
-        pokemons: []
+        pokemons: null
     }
 
     componentDidMount() {
-        axios.get('https://pokeapi.co/api/v2/generation/1/')
+        axios.get('/?limit=151')
         .then(res => {
             this.setState({
-                pokemons: res.data.pokemon_species
+                pokemons: res.data.results
             })
         })
         .catch(error => console.log(error.message));
@@ -22,10 +22,14 @@ class Pokemons extends Component {
 
     render() {
         let allPokemons = <Spinner />;
-        if (this.state.pokemons.length > 0) {
+        if (this.state.pokemons) {
             allPokemons = (
                 this.state.pokemons.map(p => {
-                    return <PokemonCard key={p.name} path={this.props.location.pathname} name={p.name} />
+                    return <PokemonCard 
+                                key={p.name} 
+                                path={this.props.location.pathname} 
+                                name={p.name}
+                                url={p.url} />
                 })
             );
         }
