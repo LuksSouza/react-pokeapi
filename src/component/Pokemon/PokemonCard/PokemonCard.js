@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import './PokemonCard.css';
 
 const pokemonLink = (props) => {
-    const url2array = props.url.split('/');
+    const { name, pathname, url } = props.data;
+    const url2array = url.split('/');
     const id = url2array[url2array.length -2];
 
     return (
@@ -13,9 +14,9 @@ const pokemonLink = (props) => {
                 <div className="card">
                     <Link 
                         to={{
-                                pathname: `${props.path}/${props.name}`,
+                                pathname: `${pathname}/${name}`,
                                 search: `?id=${id}`
-                            }}>{props.name}</Link>
+                            }}>{name}</Link>
                 </div>
             </div>
         </div>

@@ -5,6 +5,7 @@ import axios from '../../../axios';
 import PokemonNavDetails from '../../../component/Pokemon/PokemonNavDetails/PokemonNavDetails';
 import Spinner from '../../../component/UI/Spinner/Spinner';
 import Picture from '../../../component/UI/Picture/Picture';
+import './PokemonDetails.css';
 
 class PokemonDetails extends Component {
 
@@ -42,13 +43,11 @@ class PokemonDetails extends Component {
 
         if (this.state.name) {
             pokemon = (
-                <div style={{ padding: '20px' }}>
+                <div className="image-container">
                     <Picture src={this.state.sprites['front_default']} 
-                             alt={this.state.name} 
-                             align= 'right' />
+                             alt={this.state.name} />
                     <Picture src={this.state.sprites['front_shiny']} 
                              alt={this.state.name}
-                             align= 'left'
                              shiny />
                 </div>
             );

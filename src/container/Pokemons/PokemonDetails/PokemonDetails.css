@@ -1,0 +1,5 @@
+.image-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex: 0 0 50%;
+}

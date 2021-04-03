@@ -3,6 +3,7 @@ import axios from '../../axios';
 
 import Spinner from '../../component/UI/Spinner/Spinner';
 import PokemonCard from '../../component/Pokemon/PokemonCard/PokemonCard';
+import Pagination from '../Pagination/Pagination';
 
 class Pokemons extends Component {
 
@@ -13,8 +14,15 @@ class Pokemons extends Component {
     componentDidMount() {
         axios.get('/?limit=151')
         .then(res => {
+            const newPokemons = res.data.results.map(p => {
+                return {
+                    name: p.name,
+                    url: p.url,
+                    pathname: this.props.location.pathname
+                }
+            });
             this.setState({
-                pokemons: res.data.results
+                pokemons: newPokemons
             })
         })
         .catch(error => console.log(error.message));
@@ -24,29 +32,16 @@ class Pokemons extends Component {
         let allPokemons = <Spinner />;
         if (this.state.pokemons) {
             allPokemons = (
-                this.state.pokemons.map(p => {
-                    return <PokemonCard 
-                                key={p.name} 
-                                path={this.props.location.pathname} 
-                                name={p.name}
-                                url={p.url} />
-                })
+                <Pagination
+                    data={this.state.pokemons}
+                    RenderComponent={PokemonCard}
+                    title="Pokemons"
+                    pageLimit={5}
+                    dataLimit={12}
+                />
             );
         }
-
-        const divStyle = {
-            margin: '25px 100px 0px 100px',
-            height: '530px',
-            overflow: 'auto'
-        };
-
-        return (
-            <Fragment>
-                <div style={divStyle}>
-                    {allPokemons}
-                </div>
-            </Fragment>
-        );
+        return (allPokemons);
     }
 }
 
